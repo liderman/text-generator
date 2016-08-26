@@ -2,7 +2,7 @@ package text_generator_test
 
 import (
 	"fmt"
-	"github.com/liderman/text_generator"
+	"github.com/liderman/text-generator"
 )
 
 func ExampleSimpleTemplate() {
