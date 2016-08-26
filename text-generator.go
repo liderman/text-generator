@@ -1,3 +1,4 @@
+// Package text_generator Fast text generator on a mask.
 package text_generator
 
 import (
@@ -11,6 +12,7 @@ type TextGenerator struct {
 	separator rune
 }
 
+// New returns a new instance a text generator.
 func New() *TextGenerator {
 	rand.Seed(time.Now().UnixNano())
 	return &TextGenerator{
@@ -20,6 +22,9 @@ func New() *TextGenerator {
 	}
 }
 
+// Generate generates and returns a new text.
+// Use the rules for generating a plurality of texts.
+// Example mask: `Good {morning|day}!`
 func (t *TextGenerator) Generate(text string) string {
 	return string(t.scanAndReplace([]rune(text)))
 }
