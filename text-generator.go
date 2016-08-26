@@ -6,6 +6,10 @@ import (
 	"time"
 )
 
+type TextGeneratorInterface interface {
+	Generate(text string) string
+}
+
 type TextGenerator struct {
 	startTag  rune
 	endTag    rune
@@ -13,7 +17,7 @@ type TextGenerator struct {
 }
 
 // New returns a new instance a text generator.
-func New() *TextGenerator {
+func New() TextGeneratorInterface {
 	rand.Seed(time.Now().UnixNano())
 	return &TextGenerator{
 		startTag:  '{',

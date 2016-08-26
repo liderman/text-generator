@@ -47,3 +47,20 @@ func TestGenerate(t *testing.T) {
 		t.Errorf("Not equal: `%s` != `%s`", t8, "")
 	}
 }
+
+func TestCachedGenerate(t *testing.T) {
+	tg := New()
+	tgcached := NewCached(tg, 10)
+	prevResult := ""
+	for i := 0; i <= 100; i++ {
+		result := tgcached.Generate("{aaa|bbb|ccc|ddd|eee|fff|ggg|hhh}")
+		if i == 0 {
+			prevResult = result
+			continue
+		}
+		if !reflect.DeepEqual(result, prevResult) {
+			t.Errorf("Not equal: `%s` != `%s`", result, prevResult)
+			break
+		}
+	}
+}

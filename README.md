@@ -7,6 +7,12 @@ Written in Golang. I do not use regular expressions and the fastest. I covered t
 
 Installation
 -----------
+Stable release (v1):
+
+    go get gopkg.in/liderman/text-generator.v1
+
+Non stable release (master branch):
+
 	go get github.com/liderman/text-generator
 
 Usage
