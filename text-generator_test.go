@@ -48,12 +48,37 @@ func TestGenerate(t *testing.T) {
 	}
 }
 
+func TestCustomGenerateConfig(t *testing.T) {
+	tg := New().Configure('[', ']', '!')
+	t1 := tg.Generate("[aaa!aaa]")
+	if !reflect.DeepEqual(t1, "aaa") {
+		t.Errorf("Not equal: `%s` != `%s`", t1, "aaa")
+	}
+}
+
 func TestCachedGenerate(t *testing.T) {
 	tg := New()
 	tgcached := NewCached(tg, 10)
 	prevResult := ""
 	for i := 0; i <= 100; i++ {
 		result := tgcached.Generate("{aaa|bbb|ccc|ddd|eee|fff|ggg|hhh}")
+		if i == 0 {
+			prevResult = result
+			continue
+		}
+		if !reflect.DeepEqual(result, prevResult) {
+			t.Errorf("Not equal: `%s` != `%s`", result, prevResult)
+			break
+		}
+	}
+}
+
+func TestCustomCachedGenerate(t *testing.T) {
+	tg := New().Configure('[', ']', '!')
+	tgcached := NewCached(tg, 10)
+	prevResult := ""
+	for i := 0; i <= 100; i++ {
+		result := tgcached.Generate("[aaa!bbb!ccc!ddd!eee!fff!ggg!hhh]")
 		if i == 0 {
 			prevResult = result
 			continue

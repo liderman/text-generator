@@ -8,6 +8,7 @@ import (
 
 type TextGeneratorInterface interface {
 	Generate(text string) string
+	Configure(startTag rune, endTag rune, separator rune) TextGeneratorInterface
 }
 
 type TextGenerator struct {
@@ -24,6 +25,14 @@ func New() TextGeneratorInterface {
 		endTag:    '}',
 		separator: '|',
 	}
+}
+
+// Configure method configures the parser
+func (t *TextGenerator) Configure(startTag rune, endTag rune, separator rune) TextGeneratorInterface {
+	t.startTag = startTag
+	t.endTag = endTag
+	t.separator = separator
+	return t
 }
 
 // Generate generates and returns a new text.
@@ -74,7 +83,7 @@ func (t *TextGenerator) scanAndReplace(text []rune) []rune {
 	result := []rune{}
 
 	for i := 0; i < len(text); i++ {
-		if text[i] == '{' {
+		if text[i] == t.startTag {
 			if openLevel == 0 {
 				startPos = i
 				//
@@ -85,7 +94,7 @@ func (t *TextGenerator) scanAndReplace(text []rune) []rune {
 			continue
 		}
 
-		if text[i] == '}' {
+		if text[i] == t.endTag {
 			openLevel--
 
 			if openLevel == 0 {

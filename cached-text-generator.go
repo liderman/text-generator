@@ -35,3 +35,8 @@ func (t *CachedTextGenerator) Generate(text string) string {
 	t.cache.Set(key, result, cache.DefaultExpiration)
 	return result
 }
+
+func (t *CachedTextGenerator) Configure(startTag rune, endTag rune, separator rune) TextGeneratorInterface {
+	t.generator.Configure(startTag, endTag, separator)
+	return t
+}
