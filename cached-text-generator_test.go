@@ -32,3 +32,11 @@ func TestCustomCachedGenerate(t *testing.T) {
 		assert.Equal(t, result, prevResult)
 	}
 }
+
+func TestCachedTextGenerator_CustomGenerateConfig(t *testing.T) {
+	tg := New()
+	NewCached(tg, 10).Configure('[', ']', '!')
+	assert.Equal(t, tg.startTag, "[")
+	assert.Equal(t, tg.endTag, "]")
+	assert.Equal(t, tg.separator, "!")
+}
