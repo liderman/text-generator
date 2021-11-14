@@ -45,7 +45,7 @@ fmt.Print(tg.Generate(template))
 Requirements
 -----------
 
-* Need at least `go1.13` or newer.
+* Need at least `go1.14` or newer.
 
 Features
 -----------
