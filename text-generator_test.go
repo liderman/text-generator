@@ -1,4 +1,4 @@
-package text_generator
+package textgenerator
 
 import (
 	"github.com/stretchr/testify/assert"
