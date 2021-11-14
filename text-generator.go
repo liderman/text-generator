@@ -19,7 +19,7 @@ type TextGenerator struct {
 }
 
 // New returns a new instance a text generator.
-func New() GeneratorInterface {
+func New() *TextGenerator {
 	rand.Seed(time.Now().UnixNano())
 	return &TextGenerator{
 		startTag:  '{',

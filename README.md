@@ -2,6 +2,7 @@
 Fast text generator on a mask.
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/liderman/text-generator)](https://goreportcard.com/report/github.com/liderman/text-generator)
+[![codecov](https://codecov.io/gh/liderman/text-generator/branch/master/graph/badge.svg?token=53NH949TQY)](https://codecov.io/gh/liderman/text-generator)
 [![Go Reference](https://pkg.go.dev/badge/github.com/liderman/text-generator.svg)](https://pkg.go.dev/github.com/liderman/text-generator)
 [![Release](https://img.shields.io/github/release/liderman/text-generator.svg?style=flat-square)](https://github.com/liderman/text-generator/releases/latest)
 
