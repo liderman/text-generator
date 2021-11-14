@@ -1,0 +1,27 @@
+run:
+  timeout: 5m
+  modules-download-mode: vendor
+  skip-files:
+    -*_test.go
+
+issues:
+  exclude:
+    - G404 # Use of weak random number generator
+    - G401 # Use of weak cryptographic primitive
+    - G501 # Blacklisted import `crypto/md5`: weak cryptographic primitive
+
+linters:
+  enable:
+    - prealloc
+    - dogsled
+    - exportloopref
+    - unconvert
+    - unparam
+    - whitespace
+    - bodyclose
+    - gosec
+    - asciicheck
+    - depguard
+    - errorlint
+    - goconst
+    - gocritic
