@@ -30,6 +30,15 @@ func TestTextGenerator_Generate(t *testing.T) {
 
 	t8 := tg.Generate("{|}")
 	assert.Equal(t, t8, "")
+
+	t9 := tg.Generate("{")
+	assert.Equal(t, t9, "{")
+
+	t10 := tg.Generate("}")
+	assert.Equal(t, t10, "}")
+
+	t11 := tg.Generate("|")
+	assert.Equal(t, t11, "|")
 }
 
 func TestTextGenerator_CustomGenerateConfig(t *testing.T) {
