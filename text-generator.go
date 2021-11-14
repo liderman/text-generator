@@ -1,16 +1,17 @@
-// Package text_generator Fast text generator on a mask.
-package text_generator
+package textgenerator
 
 import (
 	"math/rand"
 	"time"
 )
 
-type TextGeneratorInterface interface {
+// GeneratorInterface Text generator interface for expanding functionality
+type GeneratorInterface interface {
 	Generate(text string) string
-	Configure(startTag rune, endTag rune, separator rune) TextGeneratorInterface
+	Configure(startTag rune, endTag rune, separator rune) GeneratorInterface
 }
 
+// TextGenerator Generator of unique texts by mask
 type TextGenerator struct {
 	startTag  rune
 	endTag    rune
@@ -18,7 +19,7 @@ type TextGenerator struct {
 }
 
 // New returns a new instance a text generator.
-func New() TextGeneratorInterface {
+func New() GeneratorInterface {
 	rand.Seed(time.Now().UnixNano())
 	return &TextGenerator{
 		startTag:  '{',
@@ -28,7 +29,7 @@ func New() TextGeneratorInterface {
 }
 
 // Configure method configures the parser
-func (t *TextGenerator) Configure(startTag rune, endTag rune, separator rune) TextGeneratorInterface {
+func (t *TextGenerator) Configure(startTag rune, endTag rune, separator rune) GeneratorInterface {
 	t.startTag = startTag
 	t.endTag = endTag
 	t.separator = separator

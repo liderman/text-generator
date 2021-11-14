@@ -16,7 +16,7 @@ Usage
 -----------
 An example of a simple template text generation:
 ```go
-tg := text_generator.New()
+tg := textgenerator.New()
 template := "Good {morning|day}!"
 
 fmt.Print(tg.Generate(template))
@@ -28,7 +28,7 @@ fmt.Print(tg.Generate(template))
 
 An example of a complex generation template text:
 ```go
-tg := text_generator.New()
+tg := textgenerator.New()
 template := "{Good {morning|evening|day}|Goodnight|Hello}, {friend|brother}! {How are you|What's new with you}?"
 
 fmt.Print(tg.Generate(template))

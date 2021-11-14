@@ -25,3 +25,4 @@ linters:
     - errorlint
     - goconst
     - gocritic
+    - golint

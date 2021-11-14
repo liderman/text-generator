@@ -1,5 +1,4 @@
-// Package text_generator Fast text generator on a mask.
-package text_generator
+package textgenerator
 
 import (
 	"crypto/md5"
@@ -8,13 +7,14 @@ import (
 	"time"
 )
 
+// CachedTextGenerator Implementing caching to prevent re-generation of phrases
 type CachedTextGenerator struct {
-	generator TextGeneratorInterface
+	generator GeneratorInterface
 	cache     *cache.Cache
 }
 
 // NewCached returns a new instance a cached text generator.
-func NewCached(generator TextGeneratorInterface, ttl int) TextGeneratorInterface {
+func NewCached(generator GeneratorInterface, ttl int) GeneratorInterface {
 	return &CachedTextGenerator{
 		generator: generator,
 		cache:     cache.New(time.Duration(ttl)*time.Second, 30*time.Second),
@@ -36,7 +36,8 @@ func (t *CachedTextGenerator) Generate(text string) string {
 	return result
 }
 
-func (t *CachedTextGenerator) Configure(startTag rune, endTag rune, separator rune) TextGeneratorInterface {
+// Configure Configuring tags and separators
+func (t *CachedTextGenerator) Configure(startTag rune, endTag rune, separator rune) GeneratorInterface {
 	t.generator.Configure(startTag, endTag, separator)
 	return t
 }
