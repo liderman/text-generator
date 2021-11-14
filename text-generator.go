@@ -46,7 +46,7 @@ func (t *TextGenerator) getRandomPart(text []rune) []rune {
 	openLevel := 0
 	lastPos := 0
 	isIgnore := false
-	parts := []string{}
+	var parts []string
 	for i := 0; i < len(text); i++ {
 		if text[i] == t.startTag {
 			openLevel++
@@ -60,7 +60,7 @@ func (t *TextGenerator) getRandomPart(text []rune) []rune {
 			}
 			continue
 		}
-		if isIgnore == true {
+		if isIgnore {
 			continue
 		}
 		if text[i] == t.separator {
@@ -69,7 +69,7 @@ func (t *TextGenerator) getRandomPart(text []rune) []rune {
 		}
 	}
 
-	parts = append(parts, string(text[lastPos:len(text)]))
+	parts = append(parts, string(text[lastPos:]))
 
 	return []rune(parts[rand.Intn(len(parts))])
 }
@@ -80,7 +80,7 @@ func (t *TextGenerator) scanAndReplace(text []rune) []rune {
 	endPos := 0
 	openLevel := 0
 	isFind := false
-	result := []rune{}
+	var result []rune
 
 	for i := 0; i < len(text); i++ {
 		if text[i] == t.startTag {
@@ -110,7 +110,7 @@ func (t *TextGenerator) scanAndReplace(text []rune) []rune {
 		}
 	}
 
-	if isFind == false {
+	if !isFind {
 		return text
 	}
 

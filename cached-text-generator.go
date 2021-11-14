@@ -13,7 +13,7 @@ type CachedTextGenerator struct {
 	cache     *cache.Cache
 }
 
-// New returns a new instance a cached text generator.
+// NewCached returns a new instance a cached text generator.
 func NewCached(generator TextGeneratorInterface, ttl int) TextGeneratorInterface {
 	return &CachedTextGenerator{
 		generator: generator,

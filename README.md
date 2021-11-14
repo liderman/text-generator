@@ -1,18 +1,15 @@
 # text-generator
 Fast text generator on a mask.
 
-Written in Golang. I do not use regular expressions and the fastest. I covered tests and simple! Supporting recursive text generation rules.
+[![Go Report Card](https://goreportcard.com/badge/github.com/liderman/text-generator)](https://goreportcard.com/report/github.com/liderman/text-generator)
+[![Go Reference](https://pkg.go.dev/badge/github.com/liderman/text-generator.svg)](https://pkg.go.dev/github.com/liderman/text-generator)
+[![Release](https://img.shields.io/github/release/liderman/text-generator.svg?style=flat-square)](https://github.com/liderman/text-generator/releases/latest)
 
-[![Build Status](https://travis-ci.org/liderman/text-generator.svg?branch=master)](https://travis-ci.org/liderman/text-generator)&nbsp;[![GoDoc](https://godoc.org/github.com/liderman/text-generator?status.svg)](https://godoc.org/github.com/liderman/text-generator)
+
+Written in Golang. I do not use regular expressions and the fastest. I covered tests and simple! Supporting recursive text generation rules.
 
 Installation
 -----------
-Stable release (v1):
-
-    go get gopkg.in/liderman/text-generator.v1
-
-Non stable release (master branch):
-
 	go get github.com/liderman/text-generator
 
 Usage
@@ -48,28 +45,61 @@ fmt.Print(tg.Generate(template))
 Requirements
 -----------
 
-* Need at least `go1.2` or newer.
+* Need at least `go1.13` or newer.
+
+Features
+-----------
+
+* Without external dependencies
+* Fast (does not use regular expressions)
+* Simple
+* Supports caching
+* Covered with tests
 
 Documentation
 -----------
 
-You can read package documentation [here](http:godoc.org/github.com/liderman/text-generator).
+You can read package documentation [here](https://pkg.go.dev/github.com/liderman/text-generator).
 
 Testing
 -----------
 Unit-tests:
 ```bash
-go test -v
+go test -v -race ./...
 ```
 
-Benchmarks:
+Run linter:
 ```bash
-go test -test.bench .
+docker run --rm -v $(pwd):/app -w /app golangci/golangci-lint:v1.40 golangci-lint run -v
 ```
-The test result on computer mac-mini 2012 (Intel Core i5):
+
+Benchmarks
+-----------
+```bash
+go test -test.bench . -benchmem -benchtime=10s
 ```
+The test result on computer MacBook Pro 2020 (Intel Core i5):
+```
+goos: darwin
+goarch: amd64
+pkg: github.com/liderman/text-generator
+BenchmarkGenerateEasyText-8             22446540               531 ns/op             200 B/op          8 allocs/op
+BenchmarkGenerateComplexText-8           4721838              2552 ns/op            1351 B/op         24 allocs/op
 PASS
-BenchmarkGenerateEasyText-4      1000000              1699 ns/op
-BenchmarkGenerateComplexText-4    200000              7430 ns/op
-ok      github.com/liderman/text-generator            3.391s
+ok      github.com/liderman/text-generator      27.227s
 ```
+
+CONTRIBUTE
+-----------
+* write code
+* run `go fmt ./...`
+* run all linters and tests (see above)
+* create a PR describing the changes
+
+LICENSE
+-----------
+MIT
+
+AUTHOR
+-----------
+Konstantin Osipov <k.osipov.msk@gmail.com>
